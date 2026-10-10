@@ -2,7 +2,7 @@
 packages = ["ffmpeg"]
 
 [app]
-start = "exec .venv/bin/uvicorn server:app --host 127.0.0.1 --port $PORT --log-level info"
+start = "export PATH=\"$PWD/.venv/bin:$PATH\"; exec .venv/bin/uvicorn server:app --host 127.0.0.1 --port $PORT --log-level info"
 health = "/health"
 
 [build]
