@@ -1,0 +1,18 @@
+# Yattee Server on ox. Mirrors the Dockerfile without the bundled POT provider.
+packages = ["ffmpeg"]
+
+[app]
+start = "exec .venv/bin/uvicorn server:app --host 127.0.0.1 --port $PORT --log-level info"
+health = "/health"
+
+[build]
+commands = ["uv venv --python 3.12 .venv", "uv pip install --python .venv/bin/python -r requirements.txt"]
+
+[tools]
+python = "3.12"
+uv = "0.11"
+node = "24"
+deno = "2"
+
+[storage]
+keep = ["data", "downloads"]
